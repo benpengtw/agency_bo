@@ -49,14 +49,25 @@ export default {
     const finished = ref(false);
     const route = useRoute();
     const userId = Number(route.query?.id);
-    const tableDataRef = ref([]);
+    const tableDataRef = ref([
+      {
+        name: "Johnnywang",
+        income: "20",
+        platformFee: "0.5",
+      },
+      {
+        name: "Johnnywang",
+        income: "30",
+        platformFee: "1.2",
+      },
+    ]);
     const handleDelete = (index, row) => {
       console.log(index, row);
     };
     onMounted(() => {
-      getFinancePlatform().then((response) => {
-        Object.assign(tableDataRef.value, response.data.data.gameGroupList);
-      });
+      // getFinancePlatform().then((response) => {
+      //   Object.assign(tableDataRef.value, response.data.data.gameGroupList);
+      // });
     });
     return {
       userId,

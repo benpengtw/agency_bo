@@ -2,16 +2,7 @@
   <div class="container pb-4 FLEX_C">
     <NavBar :name="userId + '月红利'" :back="'/finance'" />
     <div
-      class="
-        p-4
-        m-5
-        cursor-pointer
-        rounded-xl
-        border-primaryLight
-        CENTER_C
-        darkGradient
-        btnBg
-      "
+      class="p-4 m-5 cursor-pointer  rounded-xl border-primaryLight CENTER_C darkGradient btnBg"
     >
       <div class="text-primary">◆ 总红利 ◆</div>
       <div class="text-white bodoni">{{ state.totalBonus }}</div>
@@ -25,11 +16,18 @@
         size="mini"
       >
         <el-table-column
-                header-align="center"
-                align="center"  prop="memberAccount" label="会员帐号" />
+          header-align="center"
+          align="center"
+          prop="memberAccount"
+          label="会员帐号"
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="bonus" label="红利" sortable />
+          header-align="center"
+          align="center"
+          prop="bonus"
+          label="红利"
+          sortable
+        />
       </el-table>
     </div>
   </div>
@@ -49,20 +47,29 @@ export default {
     const loading = ref(false);
     const finished = ref(false);
     const route = useRoute();
-    const tableDataRef = ref([]);
+    const tableDataRef = ref([
+      {
+        memberAccount: "Johnnywang",
+        bonus: "33",
+      },
+      {
+        memberAccount: "Johnnywang",
+        bonus: "22",
+      },
+    ]);
     const userId = Number(route.query?.id);
     const state = reactive({
-      totalBonus: 0,
+      totalBonus: 33,
     });
     const handleDelete = (index, row) => {
       console.log(index, row);
     };
-    onMounted(() => {
-      getFinanceBonus().then((response) => {
-        state.totalBonus, response.data.data.totalBonus;
-        Object.assign(tableDataRef.value, response.data.data.list);
-      });
-    });
+    // onMounted(() => {
+    //   getFinanceBonus().then((response) => {
+    //     state.totalBonus, response.data.data.totalBonus;
+    //     Object.assign(tableDataRef.value, response.data.data.list);
+    //   });
+    // });
     return {
       userId,
       list,
@@ -77,7 +84,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  
 .van-cell {
   color: #cda269;
 }

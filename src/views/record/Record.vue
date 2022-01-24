@@ -62,7 +62,7 @@ export default {
   },
   setup() {
     const state = reactive({
-      date: "",
+      date: "2019/02/19 24:59:59",
       activeMemberCount: 0,
       totalAmount: 0,
       chargeAmount: 0,
@@ -78,12 +78,14 @@ export default {
     const year = ref("");
     const month = ref("");
     onMounted(() => {
-      getCommissionreport().then((response) => {
-        console.log(response.data.data);
-        year.value = dayjs(response.data.data.date).format("YYYY");
-        month.value = dayjs(response.data.data.date).format("M");
-        Object.assign(state, response.data.data);
-      });
+      // getCommissionreport().then((response) => {
+      //   console.log(response.data.data);
+      //   year.value = dayjs(response.data.data.date).format("YYYY");
+      //   month.value = dayjs(response.data.data.date).format("M");
+      //   Object.assign(state, response.data.data);
+      // });
+      year.value = dayjs().format("YYYY");
+      month.value = dayjs().format("M");
     });
     return {
       state,

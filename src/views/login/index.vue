@@ -55,7 +55,7 @@
 <script lang="ts">
 import { reactive, ref, onMounted } from "vue";
 import top1 from "@/assets/loginTop.png";
-import { postLogin } from "@/api/member/authorize";
+import { postLogin, fakeLogin } from "@/api/member/authorize";
 import { LocalStorageKeys } from "@/utils/constants";
 import { UserStore } from "@/store/userStore";
 import { useI18n } from "vue-i18n";
@@ -73,7 +73,7 @@ export default {
       // console.log("submit", values);
       try {
         // Post login
-        const response = await postLogin({
+        const response = await fakeLogin({
           account: values.account,
           password: values.password,
         });

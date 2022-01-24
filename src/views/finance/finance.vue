@@ -14,7 +14,6 @@
         color="white"
         line-width="50%"
         line-height="1"
-        @click-tab="onClickTab"
         class="p-4"
       >
         <van-tab :title="lastMonth + '月'">
@@ -118,38 +117,38 @@ export default {
   setup() {
     const active = ref(1);
     const state = reactive({
-      deposit: 0,
+      deposit: 1,
       withdrawal: 0,
       bonus: 0,
       platformFee: 0,
       handlingFee: 0,
-      totalIncome: 0,
+      totalIncome: 3,
       netIncome: 0,
       activeMemberCounts: 0,
     });
     const lastMonth = ref();
-    const onClickTab = ({ title }) => {
-      // console.log(title);
-      getMonthFinance({ month: title.substring(0, title.length - 1) }).then(
-        (response) => {
-          // console.log(response.data.data);
-          Object.assign(state, response.data.data);
-        }
-      );
-    };
+    // const onClickTab = ({ title }) => {
+    //   // console.log(title);
+    //   getMonthFinance({ month: title.substring(0, title.length - 1) }).then(
+    //     (response) => {
+    //       // console.log(response.data.data);
+    //       Object.assign(state, response.data.data);
+    //     }
+    //   );
+    // };
     const thisMonth = dayjs().month() + 1;
 
     onMounted(() => {
-      getMonthFinance({ month: thisMonth }).then((response) => {
-        Object.assign(state, response.data.data);
-      });
-      if (thisMonth == 1) {
-        lastMonth.value = 12;
-      } else {
-        lastMonth.value = thisMonth - 1;
-      }
+      // getMonthFinance({ month: thisMonth }).then((response) => {
+      //   Object.assign(state, response.data.data);
+      // });
+      // if (thisMonth == 1) {
+      //   lastMonth.value = 12;
+      // } else {
+      //   lastMonth.value = thisMonth - 1;
+      // }
     });
-    return { active, state, onClickTab, thisMonth, lastMonth };
+    return { active, state, thisMonth, lastMonth };
   },
 };
 </script>

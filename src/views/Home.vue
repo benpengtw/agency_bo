@@ -160,18 +160,18 @@ export default {
     const state = reactive({
       loading: true,
       top1: top1,
-      commissionRatio: 0,
-      netIncome: 0,
-      newMemberCounts: 0,
-      todayBetting: 0,
-      walletBalance: 0,
+      commissionRatio: 98.1,
+      netIncome: 87.5,
+      newMemberCounts: 35.2,
+      todayBetting: 33.1,
+      walletBalance: 27.5,
     });
 
     onMounted(() => {
-      getUser().then((response) => {
-        console.log(response.data.data);
-        Object.assign(state, response.data.data);
-      });
+      // getUser().then((response) => {
+      //   console.log(response.data.data);
+      //   Object.assign(state, response.data.data);
+      // });
     });
     return {
       getUserName,

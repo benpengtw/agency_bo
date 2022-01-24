@@ -37,17 +37,32 @@
         size="mini"
       >
         <el-table-column
-                header-align="center"
-                align="center"  prop="bettingTime" label="投注时间" />
+          header-align="center"
+          align="center"
+          prop="bettingTime"
+          label="投注时间"
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="name" label="产品名" sortable />
+          header-align="center"
+          align="center"
+          prop="name"
+          label="产品名"
+          sortable
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="volume" label="流水" sortable />
+          header-align="center"
+          align="center"
+          prop="volume"
+          label="流水"
+          sortable
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="income" label="输赢" sortable>
+          header-align="center"
+          align="center"
+          prop="income"
+          label="输赢"
+          sortable
+        >
           <template #default="scope">
             <div :class="scope.row.income < 0 ? 'text-red' : 'text-white'">
               {{ scope.row.income }}
@@ -75,7 +90,20 @@ export default {
     const route = useRoute();
     const memberID = Number(route.query?.memberID);
     const gameGroupID = Number(route.query?.gameGroupID);
-    const tableDataRef = ref([]);
+    const tableDataRef = ref([
+      {
+        bettingTime: "2019/02/19 24:59:59",
+        name: "Johnnywang",
+        volume: "5757",
+        income: "53745787",
+      },
+      {
+        bettingTime: "2019/02/27 24:59:59",
+        name: "Johnnywang",
+        volume: "45757",
+        income: "53545787",
+      },
+    ]);
     const state = reactive({
       volume: 0,
       income: 0,
@@ -89,26 +117,26 @@ export default {
       show.value = false;
       date.value = `${formatDate(start)} - ${formatDate(end)}`;
       isLink.value = false;
-      getMemberProduct({
-        memberID: memberID,
-        gameGroupID: gameGroupID,
-        periodStart: start,
-        periodEnd: end,
-      }).then((response) => {
-        Object.assign(tableDataRef.value, response.data.data.gameList);
-      });
+      // getMemberProduct({
+      //   memberID: memberID,
+      //   gameGroupID: gameGroupID,
+      //   periodStart: start,
+      //   periodEnd: end,
+      // }).then((response) => {
+      //   Object.assign(tableDataRef.value, response.data.data.gameList);
+      // });
     };
     const list = ref([]);
     const loading = ref(false);
     const finished = ref(false);
 
     onMounted(() => {
-      getMemberProduct({ memberID: memberID, gameGroupID: gameGroupID }).then(
-        (response) => {
-          Object.assign(state, response.data.data);
-          Object.assign(tableDataRef.value, response.data.data.gameList);
-        }
-      );
+      // getMemberProduct({ memberID: memberID, gameGroupID: gameGroupID }).then(
+      //   (response) => {
+      //     Object.assign(state, response.data.data);
+      //     Object.assign(tableDataRef.value, response.data.data.gameList);
+      //   }
+      // );
     });
     return {
       date,
@@ -127,7 +155,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  
 .van-cell {
   color: #cda269;
 }

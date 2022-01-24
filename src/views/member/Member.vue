@@ -43,17 +43,32 @@
         size="mini"
       >
         <el-table-column
-                header-align="center"
-                align="center"  prop="name" label="会员帐号" />
+          header-align="center"
+          align="center"
+          prop="name"
+          label="会员帐号"
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="deposit" label="存款" sortable />
+          header-align="center"
+          align="center"
+          prop="deposit"
+          label="存款"
+          sortable
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="withdrawal" label="提款" sortable />
+          header-align="center"
+          align="center"
+          prop="withdrawal"
+          label="提款"
+          sortable
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="income" label="输赢" sortable>
+          header-align="center"
+          align="center"
+          prop="income"
+          label="输赢"
+          sortable
+        >
           <template #default="scope">
             {{ scope.row.win }}
             <van-icon name="arrow" />
@@ -81,7 +96,20 @@ export default {
     const show = ref(false);
     const isLink = ref(true);
     const router = useRouter();
-    const tableDataRef = ref([]);
+    const tableDataRef = ref([
+      {
+        name: "Johnnywang",
+        deposit: "60",
+        withdrawal: "70",
+        income: "5",
+      },
+      {
+        name: "Johnnywang",
+        deposit: "90",
+        withdrawal: "80",
+        income: "3",
+      },
+    ]);
     const formatDate = (date) =>
       `${date.getFullYear() + 1}/${date.getMonth() + 1}/${date.getDate()}`;
     const onConfirm = (values) => {
@@ -92,24 +120,24 @@ export default {
       show.value = false;
       date.value = `${formatDate(start)} - ${formatDate(end)}`;
       isLink.value = false;
-      getMemberList({
-        memberName: memberName.value,
-        periodStart: start,
-        periodEnd: end,
-      }).then((response) => {
-        Object.assign(tableDataRef.value, response.data.data.list);
-      });
+      // getMemberList({
+      //   memberName: memberName.value,
+      //   periodStart: start,
+      //   periodEnd: end,
+      // }).then((response) => {
+      //   Object.assign(tableDataRef.value, response.data.data.list);
+      // });
     };
     const onConfirmMemberName = (value) => {
       memberName.value = value;
-      getMemberList({
-        memberName: value,
-        periodStart: periodStart.value,
-        periodEnd: periodEnd.value,
-      }).then((response) => {
-        Object.assign(tableDataRef.value, response.data.data.list);
-        memberName.value = value;
-      });
+      // getMemberList({
+      //   memberName: value,
+      //   periodStart: periodStart.value,
+      //   periodEnd: periodEnd.value,
+      // }).then((response) => {
+      //   Object.assign(tableDataRef.value, response.data.data.list);
+      //   memberName.value = value;
+      // });
       return value;
     };
     const list = ref([]);
@@ -121,9 +149,9 @@ export default {
       router.push({ path: "/memberDetail/id", query: { id: row.id } });
     };
     onMounted(() => {
-      getMemberList().then((response) => {
-        Object.assign(tableDataRef.value, response.data.data.list);
-      });
+      // getMemberList().then((response) => {
+      //   Object.assign(tableDataRef.value, response.data.data.list);
+      // });
     });
     return {
       date,

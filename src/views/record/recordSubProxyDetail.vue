@@ -186,26 +186,26 @@ export default {
     const year = ref("");
     const month = ref("");
     onMounted(() => {
-      getChildCommissionreport().then((response) => {
-        console.log(response.data.data);
-        year.value = dayjs(response.data.data.date).format("YYYY");
-        month.value = dayjs(response.data.data.date).format("M");
-        Object.assign(state, response.data.data);
-      });
-      getChildagencyextrabonuslist().then((response) => {
-        Object.assign(tableExtrabonusDataRef.value, response.data.data.list);
-      });
-      getChildagencycommissionlist().then((response) => {
-        tableDataRef1.value = response.data.data.list.filter((item) => {
-          return item.agencyLevel == 1;
-        });
-        tableDataRef2.value = response.data.data.list.filter((item) => {
-          return item.agencyLevel == 2;
-        });
-        tableDataRef3.value = response.data.data.list.filter((item) => {
-          return item.agencyLevel == 3;
-        });
-      });
+      // getChildCommissionreport().then((response) => {
+      //   console.log(response.data.data);
+      //   year.value = dayjs(response.data.data.date).format("YYYY");
+      //   month.value = dayjs(response.data.data.date).format("M");
+      //   Object.assign(state, response.data.data);
+      // });
+      // getChildagencyextrabonuslist().then((response) => {
+      //   Object.assign(tableExtrabonusDataRef.value, response.data.data.list);
+      // });
+      // getChildagencycommissionlist().then((response) => {
+      //   tableDataRef1.value = response.data.data.list.filter((item) => {
+      //     return item.agencyLevel == 1;
+      //   });
+      //   tableDataRef2.value = response.data.data.list.filter((item) => {
+      //     return item.agencyLevel == 2;
+      //   });
+      //   tableDataRef3.value = response.data.data.list.filter((item) => {
+      //     return item.agencyLevel == 3;
+      //   });
+      // });
     });
     return {
       activePopTab,

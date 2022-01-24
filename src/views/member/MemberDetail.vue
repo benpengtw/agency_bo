@@ -42,14 +42,25 @@
         size="mini"
       >
         <el-table-column
-                header-align="center"
-                align="center"  prop="name" label="产品名" />
+          header-align="center"
+          align="center"
+          prop="name"
+          label="产品名"
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="volume" label="上月输赢" sortable />
+          header-align="center"
+          align="center"
+          prop="volume"
+          label="上月输赢"
+          sortable
+        />
         <el-table-column
-                header-align="center"
-                align="center"  prop="income" label="本月输赢" sortable>
+          header-align="center"
+          align="center"
+          prop="income"
+          label="本月输赢"
+          sortable
+        >
           <template #default="scope">
             {{ scope.row.thisMonth }}
             <van-icon name="arrow" />
@@ -76,7 +87,18 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const memberId = Number(route.query?.id);
-    const tableDataRef = ref([]);
+    const tableDataRef = ref([
+      {
+        name: "Johnnywang",
+        volume: "78",
+        income: "35000",
+      },
+      {
+        name: "Johnnywang",
+        volume: "78",
+        income: "35000",
+      },
+    ]);
     const formatDate = (date) =>
       `${date.getFullYear() + 1}/${date.getMonth() + 1}/${date.getDate()}`;
     const onConfirm = (values) => {
@@ -92,7 +114,7 @@ export default {
       volume: 0,
       income: 0,
       bonus: 0,
-      memberName: "",
+      memberName: "Johnnywang",
     });
 
     const toDetail = (row, event, column) => {
@@ -103,10 +125,10 @@ export default {
       });
     };
     onMounted(() => {
-      getMember({ id: memberId }).then((response) => {
-        Object.assign(state, response.data.data);
-        Object.assign(tableDataRef.value, response.data.data.productList);
-      });
+      // getMember({ id: memberId }).then((response) => {
+      //   Object.assign(state, response.data.data);
+      //   Object.assign(tableDataRef.value, response.data.data.productList);
+      // });
     });
     return {
       date,
@@ -124,7 +146,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  
 .van-cell {
   color: #cda269;
 }

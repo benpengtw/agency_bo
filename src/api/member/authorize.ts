@@ -1,5 +1,6 @@
 import api from "@/api";
-
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
 import {
   // BACKENDAJAX
   AGENCYAJAX_CheckPasswordRequest,
@@ -7,7 +8,7 @@ import {
   AGENCYAJAX_AgencyLoginRequest,
   AGENCYAJAX_AgencyLoginResponse,
 } from "../model";
-
+const mock = new MockAdapter(axios);
 /**
  * Api urls
  */
@@ -18,6 +19,28 @@ enum Urls {
   RESET_PASSWORD = "/agency/agency/reset_password",
 }
 
+export const fakeLogin = (data: AGENCYAJAX_AgencyLoginRequest) => {
+  mock.onGet("/users").reply(200, {
+    data: [
+      { id: 1, account: "account48", name: "John Smith", token: "asdadsasd" },
+    ],
+  });
+
+  axios.get("/users").then((response) => {
+    console.log(response.data);
+  });
+  // api.post<AGENCYAJAX_AgencyLoginResponse>(Urls.LOGIN, data);
+  return {
+    data: {
+      data: {
+        id: 1,
+        account: "account48",
+        name: "John Smith",
+        token: "asdadsasd",
+      },
+    },
+  };
+};
 /**
  * 登入
  * @param data Post data
